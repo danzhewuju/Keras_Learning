@@ -15,14 +15,16 @@ from Unit import *
 def learning_lstm():                   #lstm暂时还是比较适合于文本中，对于有序序暂不合适
     max_feature = 10000  #作为特征的单词个数
     maxlen = 500#设置最长的序列，如果长与这个序列会被阶段，短与这个序列会被填充
-    (x_train, y_labels), (x_test, y_test) = imdb.load_data(num_words=max_feature)
-    x_train = preprocessing.sequence.pad_sequences(x_train, maxlen=maxlen)
+    # (x_train, y_labels), (x_test, y_test) = imdb.load_data(num_words=max_feature)
+    # x_train = preprocessing.sequence.pad_sequences(x_train, maxlen=maxlen)
     # x_test = preprocessing.sequence.pad_sequences(x_test, maxlen=maxlen)
     # # embedding_layer = Embedding(1000, 64)
+    x_train, y_labels = data_test()
+    # x_train = np.expand_dims(x_train, axis=2)
 
     model = Sequential()
-    model.add(Embedding(max_feature, 32))
-    model.add(LSTM(32))
+    # model.add(Embedding(max_feature, 32))
+    model.add(LSTM(32, input_shape=(95,100 )))
 
     model.add(Dense(1, activation='sigmoid'))
 
@@ -33,5 +35,13 @@ def learning_lstm():                   #lstm暂时还是比较适合于文本中
     Draw(history)
 
 
+def data_test():
+    x_train = np.zeros((95, 100))
+    y_train = np.zeros(95)
+    return x_train, y_train
+
+
 learning_lstm()
+# print(data_test())
+
 # print(test())
