@@ -20,11 +20,11 @@ def learning_lstm():                   #lstm暂时还是比较适合于文本中
     # x_test = preprocessing.sequence.pad_sequences(x_test, maxlen=maxlen)
     # # embedding_layer = Embedding(1000, 64)
     x_train, y_labels = data_test()
-    # x_train = np.expand_dims(x_train, axis=2)
+    x_train = np.expand_dims(x_train, axis=2)
 
     model = Sequential()
     # model.add(Embedding(max_feature, 32))
-    model.add(LSTM(32, input_shape=(95,100 )))
+    model.add(LSTM(32, input_shape=(100, 1)))
 
     model.add(Dense(1, activation='sigmoid'))
 
@@ -36,8 +36,16 @@ def learning_lstm():                   #lstm暂时还是比较适合于文本中
 
 
 def data_test():
-    x_train = np.zeros((95, 100))
+    x_train = np.ones((95, 100))
+    for index in range(95):
+        for j in range(100):
+            if index < j:
+                x_train[index][j] = 0
+
     y_train = np.zeros(95)
+    for i in range(95):
+        if i > 30:
+            y_train[i] = 1
     return x_train, y_train
 
 
