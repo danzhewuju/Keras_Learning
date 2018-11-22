@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import os
 from keras.backend.tensorflow_backend import set_session
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth = True
