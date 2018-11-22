@@ -36,15 +36,18 @@ def learning_lstm():                   #lstm暂时还是比较适合于文本中
 
 
 def data_test():
-    x_train = np.ones((95, 100))
-    for index in range(95):
-        for j in range(100):
-            if index < j:
-                x_train[index][j] = 0
+    # x_train = np.ones((95, 100))
+    x_train = np.random.randint(0, 2, (95, 100))
+    # for index in range(95):
+    #     for j in range(100):
+    #         if index < j:
+    #             x_train[index][j] = 0
 
     y_train = np.zeros(95)
+    t1 = np.sum([np.sum(x) for x in x_train])
+    t = np.sum(x_train)//95
     for i in range(95):
-        if i > 30:
+        if sum(x_train[i]) >= t:
             y_train[i] = 1
     return x_train, y_train
 
