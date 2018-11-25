@@ -69,7 +69,7 @@ for epoch in range(1, 60):
     generated_text = text[start_index: start_index+maxlen]
     print('---Generationg with seed: %s ' % generated_text)
     for temperature in [0.2, 0.5, 1.0, 1.2]:
-        print("----------temperature:{}\n".format(temperature))  #调整不同过的采样温度
+        print("\n----------temperature:{}\n".format(temperature))  #调整不同过的采样温度
         sys.stdout.write(generated_text)
 
         for i in range(400):
